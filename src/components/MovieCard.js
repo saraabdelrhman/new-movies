@@ -2,7 +2,6 @@ import React from "react";
 import "../styles.css";
 
 export default function MoviesCard({ movie, isWatchlisted, toggleWatchlist }) {
-
   // Handling error
   const handleError = (e) => {
     e.target.src = "../../public/images/default.jpg";
@@ -17,33 +16,35 @@ export default function MoviesCard({ movie, isWatchlisted, toggleWatchlist }) {
 
   // Handle watchlist toggle
   const handleWatchlistChange = () => {
-    if (typeof toggleWatchlist === 'function') {
+    if (typeof toggleWatchlist === "function") {
       toggleWatchlist(movie.id);
     } else {
-      console.error('toggleWatchlist is not a function');
+      console.error("toggleWatchlist is not a function");
     }
   };
 
   return (
-    <div>    
+    <div>
       <div key={movie.id} className="movie-card">
-        <img 
-          src={`images/${movie.image}`} 
-          alt={movie.title} 
-          onError={handleError} 
+        <img
+          src={`public/images/${movie.image}`}
+          alt={movie.title}
+          onError={handleError}
         />
         <div className="movie-card-info">
           <h3 className="movie-card-title">{movie.title}</h3>
           <div>
             <span className="movie-card-genre">{movie.genre}</span>
-            <span className={`movie-card-rating ${getRatingClass(movie.rating)}`}>
+            <span
+              className={`movie-card-rating ${getRatingClass(movie.rating)}`}
+            >
               {movie.rating}
             </span>
           </div>
           <label className="switch">
-            <input 
-              type="checkbox" 
-              checked={isWatchlisted} 
+            <input
+              type="checkbox"
+              checked={isWatchlisted}
               onChange={handleWatchlistChange}
             />
             <span className="slider">
